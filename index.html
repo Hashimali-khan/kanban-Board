@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main>
+    <nav>
+        <h1>Kanban Board</h1>
+        <button id="toggle-modal">Add Task</button>
+    </nav>
+
+    <section class="board">
+        <div id="todo" class="task-column">
+            <div class="heading">
+                <span>To Do</span>
+                <span id="todo-count">0</span>
+            </div>
+
+           
+        </div>
+
+        <div id="progress" class="task-column">
+            <div class="heading">
+                <span>In Progress</span>
+                <span id="inprogress-count">0</span>
+            </div>
+        </div>
+
+        <div id="done" class="task-column">
+            <div class="heading">
+                <span>Done</span>
+                <span id="done-count">0</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- MODAL -->
+<div id="modal-bg" class="modal-bg hidden">
+    <div class="modal">
+        <h2>Add New Task</h2>
+
+        <form id="task-form">
+            <input type="text" id="task-title" placeholder="Title" required>
+            <textarea id="task-desc" placeholder="Description" required></textarea>
+
+            <select id="task-status">
+                <option value="todo">To Do</option>
+                <option value="progress">In Progress</option>
+                <option value="done">Done</option>
+            </select>
+
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= VARIABLES ================= */
+:root {
+    --bg-main: #000;
+    --bg-card: #1c1919;
+    --bg-task: #121212;
+    --text-main: #f4f4f4;
+    --danger: #ff4d4d;
+
+    --pad-s: 5px;
+    --pad-m: 10px;
+    --pad-l: 15px;
+    --pad-xl: 20px;
+
+    --radius-s: 5px;
+    --radius-m: 10px;
+
+    --column-min: 280px;
+}
+
+/* ================= LAYOUT ================= */
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ================= NAV ================= */
+nav {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: none;
+    padding: var(--pad-m) var(--pad-l);
+    border-radius: var(--radius-m);
+    cursor: pointer;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,.5),
+                inset -2px -2px 5px rgba(255,255,255,.1);
+}
+
+button:hover {
+    box-shadow: inset 4px 4px 6px rgba(0,0,0,.7),
+                inset -4px -4px 6px rgba(255,255,255,.2);
+}
+
+/* ================= BOARD ================= */
+section.board {
+    flex: 1;
+    padding: 1rem 2rem;
+    display: flex;
+    gap: var(--pad-xl);
+    overflow-x: auto;
+
+  
+}
+
+/* ================= COLUMNS ================= */
+.task-column {
+    flex: 1;
+    min-width: var(--column-min);
+    background: var(--bg-card);
+    padding: var(--pad-m);
+    border-radius: var(--radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--pad-m);
+    transition: .3s ease;
+}
+
+.task-column.hover-over {
+    border: 2px dashed var(--text-main);
+    transform: scale(1.03);
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ================= TASK ================= */
+.task {
+    background: var(--bg-task);
+    padding: var(--pad-m);
+    border-radius: var(--radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--pad-s);
+    cursor: grab;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5),
+                -2px -2px 5px rgba(255,255,255,.1);
+}
+
+.task button {
+    align-self: flex-end;
+    color: var(--danger);
+    padding: var(--pad-s) var(--pad-m);
+}
+
+/* ================= MODAL BACKDROP ================= */
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+}
+
+/* ================= MODAL CARD ================= */
+.modal {
+    background: #0f0f0f;
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ================= MODAL HEADER ================= */
+.modal h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+/* ================= FORM ================= */
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#task-form input,
+#task-form textarea,
+#task-form select {
+    width: 100%;
+    background: #151515;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+#task-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+/* focus states (important, old-school good UX) */
+#task-form input:focus,
+#task-form textarea:focus,
+#task-form select:focus {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+}
+
+
+/* ================= BUTTON ================= */
+#task-form button {
+    margin-top: 6px;
+    width: fit-content;
+    align-self: center ;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    background: linear-gradient(145deg, #1f1f1f, #111);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#task-form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* ================= UTIL ================= */
+.hidden {
+    display: none;
+}
